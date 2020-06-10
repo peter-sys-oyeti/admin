@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        <label id="username"></label>
+        <script>
+            const { ipcRenderer } = require("electron");
+            ipcRenderer.send("get-username", "get username");
+            ipcRenderer.on("username-reply", (event, arg) => {
+                document.getElementById("username").innerHTML = "The Current user is : " + arg
+            });
+        </script>
+    </body>
+</html>
