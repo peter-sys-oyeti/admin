@@ -1,8 +1,10 @@
 'use strict'
 
 // Import parts of electron to use
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, session } = require('electron')
 const path = require('path')
+const os = require('os')
+
 const url = require('url')
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -62,14 +64,34 @@ function createWindow() {
   // Don't show until we are ready and loaded
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
+    /*BrowserWindow.addDevToolsExtension(
+        path.join(os.homedir(), '/.config/google-chrome/Default/Extensions/pfgnfdagidkfgccljigdamigbcnndkod/0.9.22_0')
+    )*/
 
     // Open the DevTools automatically if developing
     if (dev) {
-      const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer')
 
-      installExtension(REACT_DEVELOPER_TOOLS)
-        .catch(err => console.log('Error loading React DevTools: ', err))
+        /*session.defaultSession.loadExtension(path.join(os.homedir(), '/.config/google-chrome/Default/Extensions/pfgnfdagidkfgccljigdamigbcnndkod/0.9.22_0')).then((ext)=>{
+    console.log(ext)
+  })*/
+      //const { default: installExtension, MOBX_DEVTOOLS } = require('electron-devtools-installer')
+      //session.defaultSession.loadExtension(MOBX_DEVTOOLS)
+      //installExtension(MOBX_DEVTOOLS)
+        //.then((name) => console.log(`Added Extension:  ${JSON.stringify(name)}`))
+        //.catch(err => console.log('Error loading React DevTools: ', err))
       mainWindow.webContents.openDevTools()
+      BrowserWindow.addDevToolsExtension(
+        path.join(os.homedir(), '/.config/google-chrome/Default/Extensions/pfgnfdagidkfgccljigdamigbcnndkod/0.9.22_0')
+    )
+        /*installExtensions = async () => {
+            const installer = require('electron-devtools-installer');
+            const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+            const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
+
+            return Promise.all(
+                extensions.map(name => installer.default(installer[name], forceDownload))
+            ).catch(console.log);
+        }*/
     }
   })
 
