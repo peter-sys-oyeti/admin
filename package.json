@@ -46,8 +46,17 @@
     "postpackage": "electron-packager ./ --out=./builds"
   },
   "dependencies": {
+    "history": "^4.10.1",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.2.2",
+    "mobx-state-tree": "^3.16.0",
+    "parse": "^2.13.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-router": "^5.2.0",
+    "semantic-ui-calendar-react": "^0.15.3",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
