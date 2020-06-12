@@ -80,9 +80,7 @@ function createWindow() {
         //.then((name) => console.log(`Added Extension:  ${JSON.stringify(name)}`))
         //.catch(err => console.log('Error loading React DevTools: ', err))
       mainWindow.webContents.openDevTools()
-      BrowserWindow.addDevToolsExtension(
-        path.join(os.homedir(), '/.config/google-chrome/Default/Extensions/pfgnfdagidkfgccljigdamigbcnndkod/0.9.22_0')
-    )
+      session.defaultSession.loadExtension(path.join(os.homedir(), '/.config/google-chrome/Default/Extensions/pfgnfdagidkfgccljigdamigbcnndkod/0.9.22_0'))
         /*installExtensions = async () => {
             const installer = require('electron-devtools-installer');
             const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
