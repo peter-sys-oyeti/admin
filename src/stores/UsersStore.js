@@ -1,25 +1,25 @@
-import {types} from 'mobx-state-tree';
+import { types } from "mobx-state-tree";
 
 export const User = types
-    .model('User', {
+    .model("User", {
         id: types.string,
         email: types.string,
-        credits: types.number,
-        status: types.string,
+        username: types.string,
+        status: types.string
     })
     .views(self => ({
         get isOnline() {
-            return self.status.includes('online');
+            return self.status.includes("online");
         },
         get isOffline() {
-            return self.status.includes('offline');
-        },
+            return self.status.includes("offline");
+        }
     }));
 
 export const UserStore = types
-    .model('UserStore', {
+    .model("UserStore", {
         isLoaded: true,
-        users: types.array(User),
+        users: types.array(User)
     })
     .views(self => ({
         get OnlineUsers() {
@@ -33,20 +33,10 @@ export const UserStore = types
         },
         get OfflineUsersCount() {
             return self.users.filter(user => user.isOffline).length;
-        },
+        }
     }))
     .actions(self => ({
         addUser(user) {
             self.users.push(user);
-        },
-        resetUser(index, status) {
-            try {
-                self.users[index].status = status;
-            } catch (error) {}
-        },
-        resetCredit(index, credits) {
-            try {
-                self.users[index].credits = credits;
-            } catch (error) {}
-        },
+        }
     }));
