@@ -7,6 +7,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "mobx-react";
 
 import "semantic-ui-css/semantic.ui.css";
+
+const store = RootStore.create({});
 // Since we are using HtmlWebpackPlugin WITHOUT a template, we should create our own root node in the body element before rendering into it
 let root = document.createElement("div");
 
