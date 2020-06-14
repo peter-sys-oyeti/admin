@@ -17,10 +17,10 @@ document.body.appendChild(root);
 
 // Now we can render our application into it
 render(
-    <Profider store={store}>
+    <Provider store={store}>
         <BrowserRouter>
             <App />
         </BrowserRouter>
-    </Profider>,
+    </Provider>,
     document.getElementById("root")
 );
