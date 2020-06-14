@@ -16,4 +16,11 @@ root.id = "root";
 document.body.appendChild(root);
 
 // Now we can render our application into it
-render(<App />, document.getElementById("root"));
+render(
+    <Profider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Profider>,
+    document.getElementById("root")
+);
