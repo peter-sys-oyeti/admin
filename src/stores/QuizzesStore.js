@@ -7,10 +7,14 @@ export const Quiz = types.model("Quiz", {
 
 export const QuizzesStore = types
     .model("QuizzesStore", {
-        quizzes: types.array(Quiz)
+        quizzes: types.array(Quiz),
+        quiz: types.maybe(Quiz)
     })
     .actions(self => ({
         addQuiz(quiz) {
             self.quizzes.push(quiz);
+        },
+        selectedQuiz(quiz) {
+            self.quiz = quiz;
         }
     }));
