@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import { render } from "react-dom";
 import App from "./components/App";
 import { RootStore } from "./stores/RootStore";
@@ -21,6 +22,21 @@ const store = RootStore.create({});
 
 // Now we can render our application into it
 render(
+=======
+import ReactDOM from "react-dom";
+import { RootStore } from "./stores/RootStore";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "mobx-react";
+import makeInspectable from "mobx-devtools-mst";
+
+import App from "./App";
+import "semantic-ui-css/semantic.min.css";
+
+const store = RootStore.create({});
+makeInspectable(store);
+
+ReactDOM.render(
+>>>>>>> bfdff12d01a345353d529b012950ba32fa063d7d
     <Provider store={store}>
         <BrowserRouter>
             <App />
