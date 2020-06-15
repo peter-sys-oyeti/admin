@@ -89,9 +89,6 @@ const Quizzes = inject("store")(
                             <Card key={quiz.id} raised>
                                 <Card.Content>
                                     <Card.Header>{quiz.name}</Card.Header>
-                                    <Card.Description>
-                                        <Divier />
-                                    </Card.Description>
                                 </Card.Content>
                                 <Card.Content extra>
                                     <div className="ui two buttons">

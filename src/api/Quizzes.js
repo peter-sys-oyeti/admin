@@ -13,7 +13,7 @@ export const getQuezzes = () => {
 };
 
 export const quizzesLiveQuery = () => {
-    let query = initApi.parse.Query("Quizzes");
-    let subscription = initApi.client.subscribe(query);
+    let query = new InitApi.parse.Query("Quizzes");
+    let subscription = InitApi.client.subscribe(query);
     return subscription;
 };

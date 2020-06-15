@@ -11,7 +11,7 @@ const quizzesFunctions = store => {
         quizzes.forEach(quiz => {
             store.quizzesStore.addQuiz({
                 id: quiz.id,
-                name: quiz.name
+                name: quiz.get("name")
             });
         });
     });
@@ -19,7 +19,7 @@ const quizzesFunctions = store => {
     quizzesLiveQuery().on("create", quiz => {
         store.quizzesStore.addQuiz({
             id: quiz.id,
-            name: quiz.name
+            name: quiz.get("name")
         });
     });
 };
