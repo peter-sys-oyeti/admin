@@ -35,7 +35,7 @@ const Quizzes = inject("store")(
                     <Popup
                         trigger={
                             <Button
-                                content="Categories"
+                                content="Quizzes"
                                 icon="plus"
                                 label={{
                                     as: "a",
@@ -94,9 +94,6 @@ const Quizzes = inject("store")(
                                     <div className="ui two buttons">
                                         <Button basic color="green">
                                             Add Question
-                                        </Button>
-                                        <Button basic color="blue">
-                                            View Statistics
                                         </Button>
                                     </div>
                                 </Card.Content>
