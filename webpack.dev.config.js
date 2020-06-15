@@ -1,17 +1,27 @@
-const webpack = require('webpack')
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { spawn } = require('child_process')
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { spawn } = require('child_process');
+
+// Config directories
+const SRC_DIR = path.resolve(__dirname, 'src');
+const OUTPUT_DIR = path.resolve(__dirname, 'dist');
 
 // Any directories you will be adding code/files into, need to be added to this array so webpack will pick them up
-const defaultInclude = path.resolve(__dirname, 'src')
+const defaultInclude = [SRC_DIR];
 
 module.exports = {
+  entry: SRC_DIR + '/index.js',
+  output: {
+    path: OUTPUT_DIR,
+    publicPath: '/',
+    filename: 'bundle.js'
+  },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'postcss-loader' }],
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
         include: defaultInclude
       },
       {
@@ -40,20 +50,20 @@ module.exports = {
   ],
   devtool: 'cheap-source-map',
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: OUTPUT_DIR,
     stats: {
       colors: true,
       chunks: false,
       children: false
     },
-    before() {
+    setup() {
       spawn(
         'electron',
         ['.'],
         { shell: true, env: process.env, stdio: 'inherit' }
       )
       .on('close', code => process.exit(0))
-      .on('error', spawnError => console.error(spawnError))
+      .on('error', spawnError => console.error(spawnError));
     }
   }
-}
+};
