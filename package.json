@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "basic-electron-react-boilerplate",
   "version": "0.7.0",
   "description": "Minimal and modern react+electron+webpack boilerplate",
@@ -49,69 +48,4 @@
     "semantic-ui-calendar-react": "^0.15.3",
     "semantic-ui-react": "^0.88.2"
   }
-=======
-    "name": "spider",
-    "description": "Spider Content Management System",
-    "author": "Hamid Abdulmalik Al-Hassan",
-    "version": "0.0.6",
-    "private": true,
-    "dependencies": {
-        "chance": "^1.1.4",
-        "connected-react-router": "^6.6.1",
-        "cross-env": "^6.0.3",
-        "date-fns": "^2.9.0",
-        "electron-is-dev": "1.1.0",
-        "electron-log": "^4.0.4",
-        "history": "^4.10.1",
-        "mobx": "^5.15.3",
-        "mobx-react": "^6.1.4",
-        "mobx-state-tree": "^3.15.0",
-        "parse": "^2.11.0",
-        "react": "^16.12.0",
-        "react-dom": "^16.12.0",
-        "react-router-dom": "^5.1.2",
-        "recompose": "^0.30.0",
-        "rxjs": "^6.5.4",
-        "semantic-ui-calendar-react": "^0.15.3",
-        "semantic-ui-css": "^2.4.1",
-        "semantic-ui-react": "^0.88.2",
-        "socket.io-client": "^2.3.0",
-        "update-electron-app": "^1.2.0",
-        "uuid": "^3.4.0",
-        "video-react": "^0.14.1"
-    },
-    "devDependencies": {
-        "concurrently": "5.0.2",
-        "electron-builder": "^22.2.0",
-        "prettier": "^1.19.1",
-        "react-scripts": "3.3.0",
-        "wait-on": "4.0.0"
-    },
-    "build": {
-        "publish": {
-            "provider": "github"
-        }
-    },
-    "main": "public/electron.js",
-    "homepage": "./",
-    "scripts": {
-        "react-start": "react-scripts start",
-        "react-build": "react-scripts build",
-        "react-test": "react-scripts test --env=jsdom",
-        "react-eject": "react-scripts eject",
-        "electron-build": "electron-builder",
-        "release": "yarn react-build && electron-builder --publish=always",
-        "build": "yarn react-build && yarn electron-build",
-        "package-win": "yarn react-build && yarn electron-build --win --x64",
-        "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
-    },
-    "browserslist": {
-        "production": [">0.2%", "not dead", "not op_mini all"],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    }
->>>>>>> bfdff12d01a345353d529b012950ba32fa063d7d
 }
