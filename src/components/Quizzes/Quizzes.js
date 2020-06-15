@@ -11,6 +11,7 @@ import {
     Loader
 } from "semantic-ui-react";
 import { observer, inject } from "mobx-react";
+import { saveQuiz } from "../../api/Quizzes";
 
 const Quizzes = inject("store")(
     observer(props => {
@@ -39,8 +40,7 @@ const Quizzes = inject("store")(
                                 label={{
                                     as: "a",
                                     basic: true,
-                                    content:
-                                        store.categoriesStore.howManyCategories
+                                    content: store.quizzesStore.quizzes.length
                                 }}
                             />
                         }
@@ -52,33 +52,21 @@ const Quizzes = inject("store")(
                         </Dimmer>
                         <Form>
                             <Form.Field>
-                                <label>New Categories</label>
+                                <label>New Quiz</label>
                                 <input
-                                    value={category.name}
+                                    value={quiz.name}
                                     id="name"
-                                    placeholder="New Category"
-                                    onChange={handleChange}
-                                />
-                            </Form.Field>
-                            <Form.Field>
-                                <label>Overview</label>
-                                <textarea
-                                    value={category.overview}
-                                    id="overview"
-                                    label="Overview"
-                                    placeholder="Content overview..."
+                                    placeholder="New Quiz"
                                     onChange={handleChange}
                                 />
                             </Form.Field>
                             <Divider />
                             <Button
                                 onClick={() => {
-                                    if (category.name == "") {
+                                    if (quiz.name == "") {
                                     } else {
                                         setDimmer(true);
-                                        CategoriesQueries.SaveCategory(
-                                            category
-                                        ).then(
+                                        saveQuiz(quiz).then(
                                             result => {
                                                 setDimmer(false);
                                                 reset();
@@ -97,22 +85,18 @@ const Quizzes = inject("store")(
                 </Header>
                 <Segment attached>
                     <Card.Group itemsPerRow={3}>
-                        {store.categoriesStore.categories.map(category => (
-                            <Card key={category.id} raised>
+                        {store.quizzesStore.quizzes.map(quiz => (
+                            <Card key={quiz.id} raised>
                                 <Card.Content>
-                                    <Card.Header>{category.name}</Card.Header>
+                                    <Card.Header>{quiz.name}</Card.Header>
                                     <Card.Description>
-                                        {TruncateUtil.Truncate(
-                                            category.overview,
-                                            20,
-                                            "..."
-                                        )}
+                                        <Divier />
                                     </Card.Description>
                                 </Card.Content>
                                 <Card.Content extra>
                                     <div className="ui two buttons">
                                         <Button basic color="green">
-                                            Add Marketer
+                                            Add Question
                                         </Button>
                                         <Button basic color="blue">
                                             View Marketers
