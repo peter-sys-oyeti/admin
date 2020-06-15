@@ -4,7 +4,7 @@ import App from "./components/App";
 import { RootStore } from "./stores/RootStore";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "mobx-react";
-// Since we are using HtmlWebpackPlugin WITHOUT a template, we should create our own root node in the body element before rendering into it
+import { bootStore } from "./Bootstrapper";
 let head = document.getElementsByTagName("head")[0];
 let style = document.createElement("link");
 
@@ -18,8 +18,7 @@ root.id = "root";
 document.body.appendChild(root);
 
 const store = RootStore.create({});
-
-// Now we can render our application into it
+bootStore(store);
 render(
     <Provider store={store}>
         <BrowserRouter>
