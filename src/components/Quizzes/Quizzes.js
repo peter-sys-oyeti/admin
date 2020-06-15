@@ -96,7 +96,7 @@ const Quizzes = inject("store")(
                                             Add Question
                                         </Button>
                                         <Button basic color="blue">
-                                            View Marketers
+                                            View Statistics
                                         </Button>
                                     </div>
                                 </Card.Content>
