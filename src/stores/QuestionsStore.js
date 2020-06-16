@@ -3,7 +3,7 @@ import { types } from "mobx-state-tree";
 export const Question = types.model("Question", {
     id: types.string,
     quizId: types.string,
-    question: types.string
+    content: types.string
 });
 
 export const QuestionsStore = types
