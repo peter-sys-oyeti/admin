@@ -4,7 +4,7 @@ import { inject, observer } from "mobx-react";
 import { compose } from "recompose";
 import { Route, Switch, Link } from "react-router-dom";
 import Quizzes from "./Quizzes/Quizzes";
-
+import Questions from "./Questions/Questions";
 const styles = {
     root: {
         display: "flex",
@@ -62,6 +62,11 @@ class App extends React.Component {
                                     <Route
                                         path="/quizzes"
                                         component={Quizzes}
+                                    />
+
+                                    <Route
+                                        path="/questions"
+                                        component={Questions}
                                     />
                                 </Switch>
                             </Container>

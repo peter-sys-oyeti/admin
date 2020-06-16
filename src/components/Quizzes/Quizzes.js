@@ -17,7 +17,7 @@ const Quizzes = inject("store")(
     observer(props => {
         const [quiz, setQuiz] = useState({ name: "" });
         const [isDimmed, setDimmer] = useState(false);
-        const { store } = props;
+        const { store, history } = props;
 
         const handleChange = e => {
             let value = e.target.value;
@@ -27,6 +27,13 @@ const Quizzes = inject("store")(
 
         const reset = () => {
             setQuiz(quiz => ({ ...quiz, name: "" }));
+        };
+
+        const navigateToQuestions = selectedQuiz => {
+            // console.log(store.quizzesStore);
+
+            store.quizzesStore.selectedQuiz(selectedQuiz);
+            console.log(store.quizzesStore.quiz);
         };
 
         return (
@@ -92,7 +99,20 @@ const Quizzes = inject("store")(
                                 </Card.Content>
                                 <Card.Content extra>
                                     <div className="ui two buttons">
-                                        <Button basic color="green">
+                                        <Button
+                                            basic
+                                            color="green"
+                                            onClick={() => {
+                                                store.quizzesStore.selectedQuiz(
+                                                    {
+                                                        id: quiz.id,
+                                                        name: quiz.name
+                                                    }
+                                                );
+
+                                                history.push("/questions");
+                                            }}
+                                        >
                                             Add Question
                                         </Button>
                                     </div>
