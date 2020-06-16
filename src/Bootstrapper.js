@@ -28,10 +28,19 @@ const quizzesFunctions = store => {
 const questionsFunctions = store => {
     getQuestions().then(questions => {
         questions.forEach(question => {
-            store.questionsStore.addQuiz({
+            store.questionsStore.addQuestion({
                 id: question.id,
-                quizId: quisetion.get("quizId")
+                quizId: question.get("quizId"),
+                content: question.get("content")
             });
+        });
+    });
+
+    questionsLiveQuery().on("create", question => {
+        store.questionsStore.addQuestion({
+            id: question.id,
+            quizId: question.get("quizId"),
+            content: question.get("content")
         });
     });
 };
