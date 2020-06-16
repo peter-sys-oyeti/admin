@@ -13,7 +13,7 @@ export const getQuestions = () => {
 };
 
 export const questionsLiveQuery = () => {
-    let query = initApi.parse.Query("Questions");
-    let subscription = initApi.client.subscribe(query);
+    let query = new InitApi.parse.Query("Questions");
+    let subscription = InitApi.client.subscribe(query);
     return subscription;
 };
