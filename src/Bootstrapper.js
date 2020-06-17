@@ -2,7 +2,7 @@ import InitApi from "./api/InitApi";
 
 import { quizzesLiveQuery, getQuezzes } from "./api/Quizzes";
 import { questionsLiveQuery, getQuestions } from "./api/Questions";
-
+import { answersLiveQuery, getAnswers } from "./api/Answers";
 export const bootStore = store => {
     quizzesFunctions(store);
 };
