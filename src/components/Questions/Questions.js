@@ -44,6 +44,10 @@ const Questions = inject("store")(
             setQuestion(question => ({ ...question, [field]: value }));
         };
 
+        const reset = () => {
+            setQuestion(question => ({ ...question, content: "" }));
+        };
+
         const handleClick = (e, titleProps) => {
             const { index, itemID } = titleProps;
             const newIndex = activeIndex === index ? -1 : index;
