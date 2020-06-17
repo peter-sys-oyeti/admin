@@ -33,10 +33,17 @@ const Questions = inject("store")(
                 });*/
             } catch (error) {}
         }, []);
-        const handleChange = e => {
-            /*let value = e.target.value;
-            let field = e.target.id;
-            setQuiz(quiz => ({ ...quiz, [field]: value }));*/
+
+        const handleClick = (e, titleProps) => {
+            const { index, itemID } = titleProps;
+            const newIndex = activeIndex === index ? -1 : index;
+            setActiveIndex(newIndex);
+            /*  store.stockStore.removeStock();
+            StockStore.GetStock(itemID).then(results => {
+                results.forEach(result => {
+                    store.stockStore.addStock(result);
+                });
+            });*/
         };
 
         return (
