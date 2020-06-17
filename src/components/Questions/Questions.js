@@ -67,11 +67,11 @@ const Questions = inject("store")(
                             </Dimmer>
                             <Form>
                                 <Form.Field>
-                                    <label>New Quiz</label>
+                                    <label>New Question</label>
                                     <input
                                         value={question.content}
-                                        id="name"
-                                        placeholder="New Quiz"
+                                        id="content"
+                                        placeholder="New Question"
                                         onChange={handleChange}
                                     />
                                 </Form.Field>
