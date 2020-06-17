@@ -8,7 +8,7 @@ export const saveAnswer = newAnswer => {
 
 export const getAnswers = () => {
     const Answers = InitApi.parse.Object.extend("Answers");
-    const answer = new InitApi.parse.Query(Answers);
+    const answers = new InitApi.parse.Query(Answers);
     return answers.limit(500).find();
 };
 
