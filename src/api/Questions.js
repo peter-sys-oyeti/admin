@@ -1,6 +1,6 @@
 import InitApi from "./InitApi";
 
-export const saveNewQuestion = newQuestion => {
+export const saveQuestion = newQuestion => {
     const Questions = InitApi.parse.Object.extend("Questions");
     const question = new Questions();
     return question.save(newQuestion);

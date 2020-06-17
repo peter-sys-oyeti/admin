@@ -14,6 +14,7 @@ import {
     Divider
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { saveQuestion } from "../../api/Questions";
 import Answers from "./Answers";
 const Questions = inject("store")(
     observer(props => {
@@ -36,6 +37,12 @@ const Questions = inject("store")(
                 });*/
             } catch (error) {}
         }, []);
+
+        const handleChange = e => {
+            let value = e.target.value;
+            let field = e.target.id;
+            setQuestion(question => ({ ...question, [field]: value }));
+        };
 
         const handleClick = (e, titleProps) => {
             const { index, itemID } = titleProps;
@@ -82,10 +89,10 @@ const Questions = inject("store")(
                                 <Divider />
                                 <Button
                                     onClick={() => {
-                                        if (quiz.name == "") {
+                                        if (question.name === "") {
                                         } else {
                                             setDimmer(true);
-                                            /* saveQuiz(quiz).then(
+                                            saveQuestion(question).then(
                                                 result => {
                                                     setDimmer(false);
                                                     reset();
@@ -95,7 +102,7 @@ const Questions = inject("store")(
                                                         "failed to save"
                                                     );
                                                 }
-                                            );*/
+                                            );
                                         }
                                     }}
                                 >
