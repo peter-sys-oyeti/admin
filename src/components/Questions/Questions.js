@@ -18,7 +18,7 @@ import { saveQuestion } from "../../api/Questions";
 import Answers from "./Answers";
 const Questions = inject("store")(
     observer(props => {
-        const { store } = props;
+        const { store, history } = props;
 
         const [activeIndex, setActiveIndex] = useState(-1);
         const [isLoading, setIsLoading] = useState(false);
@@ -135,6 +135,11 @@ const Questions = inject("store")(
                                                 <Icon name="dropdown" />
                                                 <Button
                                                     content={question.content}
+                                                    onClick={() => {
+                                                        history.push(
+                                                            "/answers"
+                                                        );
+                                                    }}
                                                 />
                                             </Accordion.Title>
                                             <Accordion.Content
