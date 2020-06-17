@@ -21,7 +21,10 @@ const Questions = inject("store")(
 
         const [activeIndex, setActiveIndex] = useState(-1);
         const [isLoading, setIsLoading] = useState(false);
-        const [question, setQuestion] = useState({ quizId: "", content: "" });
+        const [question, setQuestion] = useState({
+            quizId: store.quizzesStore.quiz.id,
+            content: ""
+        });
         const [isDimmed, setDimmer] = useState(false);
 
         useEffect(() => {
