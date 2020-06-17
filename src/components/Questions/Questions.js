@@ -38,12 +38,6 @@ const Questions = inject("store")(
             const { index, itemID } = titleProps;
             const newIndex = activeIndex === index ? -1 : index;
             setActiveIndex(newIndex);
-            /*  store.stockStore.removeStock();
-            StockStore.GetStock(itemID).then(results => {
-                results.forEach(result => {
-                    store.stockStore.addStock(result);
-                });
-            });*/
         };
 
         return (
