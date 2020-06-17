@@ -105,27 +105,35 @@ const Questions = inject("store")(
                 <Segment attached>
                     <Accordion fluid styled>
                         {store.questionsStore.questions.map(
-                            (question, index) => (
-                                <React.Fragment key={question.id}>
-                                    <Accordion.Title
-                                        active={activeIndex === index}
-                                        itemID={question.id}
-                                        index={index}
-                                        onClick={handleClick}
-                                    >
-                                        <Icon name="dropdown" />
-                                        <Button content={question.content} />
-                                    </Accordion.Title>
-                                    <Accordion.Content
-                                        active={activeIndex === index}
-                                    >
-                                        <Answers
-                                            questionId={question.id}
-                                            props={props}
-                                        />
-                                    </Accordion.Content>
-                                </React.Fragment>
-                            )
+                            (question, index) => {
+                                if (
+                                    question.id === store.quizzesStore.quiz.id
+                                ) {
+                                    return (
+                                        <React.Fragment key={question.id}>
+                                            <Accordion.Title
+                                                active={activeIndex === index}
+                                                itemID={question.id}
+                                                index={index}
+                                                onClick={handleClick}
+                                            >
+                                                <Icon name="dropdown" />
+                                                <Button
+                                                    content={question.content}
+                                                />
+                                            </Accordion.Title>
+                                            <Accordion.Content
+                                                active={activeIndex === index}
+                                            >
+                                                <Answers
+                                                    questionId={question.id}
+                                                    props={props}
+                                                />
+                                            </Accordion.Content>
+                                        </React.Fragment>
+                                    );
+                                }
+                            }
                         )}
                     </Accordion>
                 </Segment>
