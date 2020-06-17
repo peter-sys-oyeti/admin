@@ -18,6 +18,9 @@ import { Link } from "react-router-dom";
 const Questions = inject("store")(
     observer(props => {
         const { store } = props;
+
+        const [activeIndex, setActiveIndex] = useState(-1);
+        const [isLoading, setIsLoading] = useState(false);
         const [question, setQuestion] = useState({ quizId: "", content: "" });
         const [isDimmed, setDimmer] = useState(false);
 
@@ -98,7 +101,33 @@ const Questions = inject("store")(
                         </Popup>
                     </Header>
                 </Segment>
-                <Segment attached></Segment>
+                <Segment attached>
+                    <Accordion fluid styled>
+                        {store.questionsStore.questions.map(
+                            (question, index) => (
+                                <React.Fragment key={item.id}>
+                                    <Accordion.Title
+                                        active={activeIndex === index}
+                                        itemID={question.id}
+                                        index={index}
+                                        onClick={handleClick}
+                                    >
+                                        <Icon name="dropdown" />
+                                        <Button content={question.content} />
+                                    </Accordion.Title>
+                                    <Accordion.Content
+                                        active={activeIndex === index}
+                                    >
+                                        <Answers
+                                            questionId={question.id}
+                                            props={props}
+                                        />
+                                    </Accordion.Content>
+                                </React.Fragment>
+                            )
+                        )}
+                    </Accordion>
+                </Segment>
             </React.Fragment>
         );
     })
