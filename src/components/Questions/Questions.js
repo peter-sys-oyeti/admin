@@ -126,10 +126,7 @@ const Questions = inject("store")(
                                             <Accordion.Content
                                                 active={activeIndex === index}
                                             >
-                                                <Answers
-                                                    questionId={question.id}
-                                                    props={props}
-                                                />
+                                                <Answers props={props} />
                                             </Accordion.Content>
                                         </React.Fragment>
                                     );
