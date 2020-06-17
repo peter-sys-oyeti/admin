@@ -14,7 +14,7 @@ import {
     Divider
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-
+import Answers from "./Answers";
 const Questions = inject("store")(
     observer(props => {
         const { store } = props;
