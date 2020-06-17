@@ -107,7 +107,8 @@ const Questions = inject("store")(
                         {store.questionsStore.questions.map(
                             (question, index) => {
                                 if (
-                                    question.id === store.quizzesStore.quiz.id
+                                    question.quizId ===
+                                    store.quizzesStore.quiz.id
                                 ) {
                                     return (
                                         <React.Fragment key={question.id}>
