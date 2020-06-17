@@ -27,32 +27,15 @@ const Answers = inject("store")(
                 <Table celled>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell>Quantity</Table.HeaderCell>
-                            <Table.HeaderCell>Sub Quantity</Table.HeaderCell>
-                            <Table.HeaderCell>Sold</Table.HeaderCell>
-                            <Table.HeaderCell>Expiry</Table.HeaderCell>
-                            <Table.HeaderCell>Purchase Date</Table.HeaderCell>
+                            <Table.HeaderCell>Answer</Table.HeaderCell>
+                            <Table.HeaderCell>Type</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {store.stockStore.stock.map(stock => (
-                            <Table.Row key={stock.id}>
-                                <Table.Cell>
-                                    {parseFloat(stock.quantity) /
-                                        parseFloat(stock.subQuantity)}
-                                </Table.Cell>
-                                <Table.Cell>{stock.quantity}</Table.Cell>
-                                <Table.Cell>0</Table.Cell>
-                                <Table.Cell>
-                                    {new Date(
-                                        parseInt(stock.expiry)
-                                    ).toDateString()}
-                                </Table.Cell>
-                                <Table.Cell>
-                                    {new Date(
-                                        parseInt(stock.batch)
-                                    ).toDateString()}
-                                </Table.Cell>
+                        {store.answersStore.answers.map(answer => (
+                            <Table.Row key={answer.id}>
+                                <Table.Cell>{answer.content}</Table.Cell>
+                                <Table.Cell>{answer.type}</Table.Cell>
                             </Table.Row>
                         ))}
                     </Table.Body>
