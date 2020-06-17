@@ -106,7 +106,7 @@ const Questions = inject("store")(
                     <Accordion fluid styled>
                         {store.questionsStore.questions.map(
                             (question, index) => (
-                                <React.Fragment key={item.id}>
+                                <React.Fragment key={question.id}>
                                     <Accordion.Title
                                         active={activeIndex === index}
                                         itemID={question.id}
