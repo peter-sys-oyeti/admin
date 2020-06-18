@@ -15,6 +15,7 @@ import {
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { saveQuestion } from "../../api/Questions";
+import { saveAnswer } from "../../api/Answers";
 import Answers from "./Answers";
 const Questions = inject("store")(
     observer(props => {
@@ -26,17 +27,14 @@ const Questions = inject("store")(
             quizId: store.quizzesStore.quiz.id,
             content: ""
         });
-        const [isDimmed, setDimmer] = useState(false);
 
-        useEffect(() => {
-            try {
-                /*  store.itemStore.clearSelectedItems();
-                ItemsStore.GetItems(params.categoryId).then(items => {
-                    store.itemStore.addSelectedItems(items);
-                    setItems(items);
-                });*/
-            } catch (error) {}
-        }, []);
+        const [answer, setAnswer] = useState({
+            questionId: "",
+            content: "",
+            type: ""
+        });
+
+        const [isDimmed, setDimmer] = useState(false);
 
         const handleChange = e => {
             let value = e.target.value;
@@ -44,8 +42,18 @@ const Questions = inject("store")(
             setQuestion(question => ({ ...question, [field]: value }));
         };
 
-        const reset = () => {
+        const handleAnswerChange = e => {
+            let value = e.target.value;
+            let field = e.target.id;
+            setAnswer(answer => ({ ...answer, [field]: value }));
+        };
+
+        const resetQuestion = () => {
             setQuestion(question => ({ ...question, content: "" }));
+        };
+
+        const resetAnswer = () => {
+            setAnswer(answer => ({ ...answer, content: "" }));
         };
 
         const handleClick = (e, titleProps) => {
@@ -99,7 +107,7 @@ const Questions = inject("store")(
                                             saveQuestion(question).then(
                                                 result => {
                                                     setDimmer(false);
-                                                    reset();
+                                                    resetQuestion();
                                                 },
                                                 err => {
                                                     console.log(
@@ -133,14 +141,116 @@ const Questions = inject("store")(
                                                 onClick={handleClick}
                                             >
                                                 <Icon name="dropdown" />
-                                                <Button
-                                                    content={question.content}
-                                                    onClick={() => {
-                                                        history.push(
-                                                            "/answers"
-                                                        );
-                                                    }}
-                                                />
+                                                <Popup
+                                                    trigger={
+                                                        <Button
+                                                            content={
+                                                                question.content
+                                                            }
+                                                            icon="question"
+                                                            label={{
+                                                                as: "a",
+                                                                basic: true,
+                                                                content:
+                                                                    "Add Answer"
+                                                            }}
+                                                            onClick={() => {
+                                                                setAnswer(
+                                                                    answer => ({
+                                                                        ...answer,
+                                                                        questionId:
+                                                                            question.id
+                                                                    })
+                                                                );
+                                                                store.questionsStore.selectedQuestion(
+                                                                    {
+                                                                        id:
+                                                                            question.id,
+                                                                        quizId:
+                                                                            question.quizId,
+                                                                        content:
+                                                                            question.content
+                                                                    }
+                                                                );
+                                                            }}
+                                                        />
+                                                    }
+                                                    position="bottom left"
+                                                    on="click"
+                                                >
+                                                    <Dimmer
+                                                        active={isDimmed}
+                                                        inverted
+                                                    >
+                                                        <Loader inverted>
+                                                            Saving
+                                                        </Loader>
+                                                    </Dimmer>
+                                                    <Form>
+                                                        <Form.Field>
+                                                            <label>
+                                                                New Answer
+                                                            </label>
+                                                            <input
+                                                                value={
+                                                                    answer.content
+                                                                }
+                                                                id="content"
+                                                                placeholder="New Answer"
+                                                                onChange={
+                                                                    handleAnswerChange
+                                                                }
+                                                            />
+                                                        </Form.Field>
+                                                        <Form.Field>
+                                                            <label>
+                                                                Answer Type
+                                                            </label>
+                                                            <input
+                                                                value={
+                                                                    answer.type
+                                                                }
+                                                                id="type"
+                                                                placeholder="Answer Type"
+                                                                onChange={
+                                                                    handleAnswerChange
+                                                                }
+                                                            />
+                                                        </Form.Field>
+
+                                                        <Divider />
+                                                        <Button
+                                                            onClick={() => {
+                                                                if (
+                                                                    answer.content ===
+                                                                    ""
+                                                                ) {
+                                                                } else {
+                                                                    setDimmer(
+                                                                        true
+                                                                    );
+                                                                    saveAnswer(
+                                                                        answer
+                                                                    ).then(
+                                                                        result => {
+                                                                            setDimmer(
+                                                                                false
+                                                                            );
+                                                                            resetAnswer();
+                                                                        },
+                                                                        err => {
+                                                                            console.log(
+                                                                                "failed to save"
+                                                                            );
+                                                                        }
+                                                                    );
+                                                                }
+                                                            }}
+                                                        >
+                                                            Save
+                                                        </Button>
+                                                    </Form>
+                                                </Popup>
                                             </Accordion.Title>
                                             <Accordion.Content
                                                 active={activeIndex === index}

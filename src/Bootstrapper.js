@@ -52,7 +52,7 @@ const answersFunctions = store => {
         answers.forEach(answer => {
             store.answersStore.addAnswer({
                 id: answer.id,
-                questionId: answer.get("answerId"),
+                questionId: answer.get("questionId"),
                 content: answer.get("content"),
                 type: answer.get("type")
             });

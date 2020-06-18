@@ -5,6 +5,7 @@ import { compose } from "recompose";
 import { Route, Switch, Link } from "react-router-dom";
 import Quizzes from "./Quizzes/Quizzes";
 import Questions from "./Questions/Questions";
+
 const styles = {
     root: {
         display: "flex",
