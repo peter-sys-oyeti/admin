@@ -31,19 +31,23 @@ const Answers = inject("store")(
                     </Table.Header>
                     <Table.Body>
                         {store.answersStore.answers.map(answer => {
-                            if (
-                                store.questionsStore.question.id ===
-                                answer.questionId
-                            ) {
-                                return (
-                                    <Table.Row key={answer.id}>
-                                        <Table.Cell>
-                                            {answer.content}
-                                        </Table.Cell>
-                                        <Table.Cell>{answer.type}</Table.Cell>
-                                    </Table.Row>
-                                );
-                            }
+                            try {
+                                if (
+                                    store.questionsStore.question.id ===
+                                    answer.questionId
+                                ) {
+                                    return (
+                                        <Table.Row key={answer.id}>
+                                            <Table.Cell>
+                                                {answer.content}
+                                            </Table.Cell>
+                                            <Table.Cell>
+                                                {answer.type}
+                                            </Table.Cell>
+                                        </Table.Row>
+                                    );
+                                }
+                            } catch (error) {}
                         })}
                     </Table.Body>
                 </Table>
