@@ -140,7 +140,20 @@ const Questions = inject("store")(
                                                 index={index}
                                                 onClick={handleClick}
                                             >
-                                                <Icon name="dropdown" />
+                                                <Icon
+                                                    name="dropdown"
+                                                    onClick={() => {
+                                                        store.questionsStore.selectedQuestion(
+                                                            {
+                                                                id: question.id,
+                                                                quizId:
+                                                                    question.quizId,
+                                                                content:
+                                                                    question.content
+                                                            }
+                                                        );
+                                                    }}
+                                                />
                                                 <Popup
                                                     trigger={
                                                         <Button
