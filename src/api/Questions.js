@@ -1,6 +1,6 @@
 import InitApi from "./InitApi";
 
-export const saveNewQuestion = newQuestion => {
+export const saveQuestion = newQuestion => {
     const Questions = InitApi.parse.Object.extend("Questions");
     const question = new Questions();
     return question.save(newQuestion);
@@ -13,7 +13,7 @@ export const getQuestions = () => {
 };
 
 export const questionsLiveQuery = () => {
-    let query = initApi.parse.Query("Questions");
-    let subscription = initApi.client.subscribe(query);
+    let query = new InitApi.parse.Query("Questions");
+    let subscription = InitApi.client.subscribe(query);
     return subscription;
 };
