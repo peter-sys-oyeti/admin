@@ -1,86 +1,66 @@
 {
-  "name": "quiz-admin",
-  "version": "0.1.0",
-  "description": "Quiz Admin.",
-  "license": "MIT",
-  "private": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/peter-sys-oyeti/admin.git"
-  },
-  "homepage": "",
-  "bugs": {
-    "url": "https://github.com/peter-sys-oyeti/admin/issues"
-  },
-  "author": {
-    "name": "Peter Oyeti",
-    "email": "oyeti@gmail.com",
-    "url": "https://github.com/peter-sys-oyeti"
-  },
-  "keywords": [
-    "app",
-    "boilerplate",
-    "electron",
-    "open",
-    "open-source",
-    "postcss",
-    "react",
-    "reactjs",
-    "source",
-    "webpack"
-  ],
-  "engines": {
-    "node": ">=9.0.0",
-    "npm": ">=5.0.0",
-    "yarn": ">=1.0.0"
-  },
-  "browserslist": [
-    "last 4 versions"
-  ],
-  "main": "main.js",
-  "scripts": {
-    "prod": "cross-env NODE_ENV=production webpack --mode production --config webpack.build.config.js && electron --noDevServer .",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js --mode development",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.build.config.js --mode production",
-    "package": "yarn build",
-    "postpackage": "electron-packager --platform=win32 --arch=x64 ./ --out=./builds"
-  },
-  "dependencies": {
-    "history": "^5.0.0",
-    "mobx": "^5.15.4",
-    "mobx-react": "^6.2.2",
-    "mobx-state-tree": "^3.16.0",
-    "parse": "^2.13.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
-    "recompose": "^0.30.0",
-    "semantic-ui-calendar-react": "^0.15.3",
-    "semantic-ui-react": "^0.88.2"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/plugin-proposal-class-properties": "^7.10.1",
-    "@babel/preset-react": "^7.9.4",
-    "babel-loader": "^8.1.0",
-    "babili-webpack-plugin": "^0.1.2",
-    "cross-env": "^7.0.2",
-    "css-loader": "^3.5.3",
-    "electron": "^9.0.0",
-    "electron-devtools-installer": "^3.0.0",
-    "electron-packager": "^14.2.1",
-    "file-loader": "^6.0.0",
-    "html-webpack-plugin": "^4.3.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "postcss-import": "^12.0.1",
-    "postcss-loader": "^3.0.0",
-    "postcss-nested": "^4.2.1",
-    "postcss-preset-env": "^6.7.0",
-    "postcss-pxtorem": "^5.1.1",
-    "style-loader": "^1.2.0",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0"
-  }
+    "name": "quiz-admin",
+    "description": "Quiz Management System",
+    "author": "Hamid Abdulmalik Al-Hassan",
+    "version": "0.0.6",
+    "private": true,
+    "dependencies": {
+        "connected-react-router": "^6.6.1",
+        "cross-env": "^6.0.3",
+        "date-fns": "^2.9.0",
+        "electron-is-dev": "^1.2.0",
+        "history": "^4.10.1",
+        "mobx": "^5.15.3",
+        "mobx-react": "^6.1.4",
+        "mobx-state-tree": "^3.15.0",
+        "parse": "^2.11.0",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0",
+        "react-router-dom": "^5.1.2",
+        "recompose": "^0.30.0",
+        "rxjs": "^6.5.4",
+        "semantic-ui-calendar-react": "^0.15.3",
+        "semantic-ui-css": "^2.4.1",
+        "semantic-ui-react": "^0.88.2"
+    },
+    "devDependencies": {
+        "concurrently": "5.0.2",
+        "electron": "^9.0.4",
+        "electron-builder": "^22.7.0",
+        "electron-log": "^4.2.2",
+        "prettier": "^1.19.1",
+        "react-scripts": "3.3.0",
+        "update-electron-app": "^1.5.0",
+        "wait-on": "4.0.0"
+    },
+    "build": {
+        "publish": {
+            "provider": "github"
+        }
+    },
+    "main": "public/electron.js",
+    "homepage": "./",
+    "scripts": {
+        "react-start": "react-scripts start",
+        "react-build": "react-scripts build",
+        "react-test": "react-scripts test --env=jsdom",
+        "react-eject": "react-scripts eject",
+        "release": "yarn react-build && electron-builder --publish=always",
+        "build": "yarn react-build && yarn electron-build",
+        "package-linux": "yarn react-build && yarn electron-build --linux",
+        "package-win": "yarn react-build && yarn electron-builder --win --x64",
+        "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }
