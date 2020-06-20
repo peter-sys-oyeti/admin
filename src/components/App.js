@@ -5,7 +5,7 @@ import { compose } from "recompose";
 import { Route, Switch, Link } from "react-router-dom";
 import Quizzes from "./Quizzes/Quizzes";
 import Questions from "./Questions/Questions";
-
+import Users from "./Users/Users";
 const styles = {
     root: {
         display: "flex",
@@ -47,6 +47,13 @@ class App extends React.Component {
                             as={Link}
                             to="/quizzes"
                         />
+                        <Menu.Item
+                            name="users"
+                            active={this.state.activeItem === "users"}
+                            onClick={this.handleItemClick}
+                            as={Link}
+                            to="/users"
+                        />
 
                         <Menu.Menu position="right">
                             <Menu.Item
@@ -65,6 +72,7 @@ class App extends React.Component {
                                         component={Quizzes}
                                     />
 
+                                    <Route path="/users" component={Users} />
                                     <Route
                                         path="/questions"
                                         component={Questions}
