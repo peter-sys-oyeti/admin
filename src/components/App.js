@@ -3,6 +3,7 @@ import { Header, Menu, Container } from "semantic-ui-react";
 import { inject, observer } from "mobx-react";
 import { compose } from "recompose";
 import { Route, Switch, Link } from "react-router-dom";
+import Department from "./Departments/Departments";
 import Quizzes from "./Quizzes/Quizzes";
 import Questions from "./Questions/Questions";
 import Users from "./Users/Users";
@@ -41,11 +42,11 @@ class App extends React.Component {
                             <Header size="small">Quizzes Admin</Header>
                         </Menu.Item>
                         <Menu.Item
-                            name="quizzes"
-                            active={this.state.activeItem === "quizzes"}
+                            name="departments"
+                            active={this.state.activeItem === "departments"}
                             onClick={this.handleItemClick}
                             as={Link}
-                            to="/quizzes"
+                            to="/departments"
                         />
                         <Menu.Item
                             name="users"
@@ -67,6 +68,10 @@ class App extends React.Component {
                         <React.Fragment>
                             <Container style={{ marginTop: "5em" }}>
                                 <Switch>
+                                    <Route
+                                        path="/departments"
+                                        component={Department}
+                                    />
                                     <Route
                                         path="/quizzes"
                                         component={Quizzes}
