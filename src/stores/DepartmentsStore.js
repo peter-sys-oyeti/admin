@@ -1,7 +1,7 @@
 import { types } from "mobx-state-tree";
 
 export const Department = types.model("Department", {
-    id: types.string,
+    id: types.number,
     name: types.string
 });
 

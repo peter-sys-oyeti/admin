@@ -3,7 +3,7 @@ import { Header, Menu, Container } from "semantic-ui-react";
 import { inject, observer } from "mobx-react";
 import { compose } from "recompose";
 import { Route, Switch, Link } from "react-router-dom";
-import Department from "./Departments/Departments";
+import Departments from "./Departments/Departments";
 import Quizzes from "./Quizzes/Quizzes";
 import Questions from "./Questions/Questions";
 import Users from "./Users/Users";
@@ -26,7 +26,7 @@ const styles = {
 };
 
 class App extends React.Component {
-    state = { activeItem: "quizzes" };
+    state = { activeItem: "departments" };
     handleItemClick = (e, { name }) => {
         this.setState({ activeItem: name });
     };
@@ -70,7 +70,7 @@ class App extends React.Component {
                                 <Switch>
                                     <Route
                                         path="/departments"
-                                        component={Department}
+                                        component={Departments}
                                     />
                                     <Route
                                         path="/quizzes"

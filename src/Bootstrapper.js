@@ -11,6 +11,7 @@ export const bootStore = store => {
     questionsFunctions(store);
     answersFunctions(store);
     usersFunction(store);
+    departmentsFunction(store);
 };
 
 const quizzesFunctions = store => {
@@ -95,8 +96,8 @@ const departmentsFunction = store => {
     getDepartments().then(departments => {
         departments.forEach(department => {
             store.departmentsStore.addDepartment({
-                id: department.id,
-                name: department.name
+                id: department.get("id"),
+                name: department.get("name")
             });
         });
     });

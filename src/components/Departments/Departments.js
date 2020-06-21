@@ -39,7 +39,7 @@ const Departments = inject("store")(
                 </Header>
                 <Segment attached>
                     <Card.Group itemsPerRow={3}>
-                        {store.departmentssStore.departments.map(department => (
+                        {store.departmentsStore.departments.map(department => (
                             <Card key={department.id} raised>
                                 <Card.Content>
                                     <Card.Header>{department.name}</Card.Header>
