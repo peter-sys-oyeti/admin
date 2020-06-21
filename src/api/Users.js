@@ -1,6 +1,6 @@
 import InitApi from "./InitApi";
 
-export const getUser = () => {
+export const getUsers = () => {
     const Users = InitApi.parse.Object.extend("Users");
     const users = new InitApi.parse.Query(Users);
     return users.limit(500).find();

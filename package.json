@@ -49,6 +49,7 @@
         "build": "yarn react-build && yarn electron-build",
         "package-linux": "yarn react-build && yarn electron-build --linux",
         "package-win": "yarn react-build && yarn electron-builder --win --x64",
+        "package-win-2": "yarn react-build && electron-packager --platform=win32 --arch=x64 ./ --asar --out=./build",
         "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
     },
     "browserslist": {

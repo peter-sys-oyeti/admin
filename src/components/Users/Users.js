@@ -20,7 +20,7 @@ const Users = inject("store")(
                 </Header>
                 <Divider />
                 <Card.Group itemsPerRow={5}>
-                    {store.userStore.OfflineUsers.map(user => (
+                    {store.usersStore.users.map(user => (
                         <Card key={user.id} raised>
                             <Card.Content>
                                 <Card.Header>{user.username}</Card.Header>

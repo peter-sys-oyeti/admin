@@ -3,10 +3,12 @@ import InitApi from "./api/InitApi";
 import { quizzesLiveQuery, getQuezzes } from "./api/Quizzes";
 import { questionsLiveQuery, getQuestions } from "./api/Questions";
 import { answersLiveQuery, getAnswers } from "./api/Answers";
+import { getUsers, usersLiveQuery } from "./api/Users";
 export const bootStore = store => {
     quizzesFunctions(store);
     questionsFunctions(store);
     answersFunctions(store);
+    usersFunction(store);
 };
 
 const quizzesFunctions = store => {
@@ -65,6 +67,24 @@ const answersFunctions = store => {
             questionId: answer.get("questionId"),
             content: answer.get("content"),
             type: answer.get("type")
+        });
+    });
+};
+
+const usersFunction = store => {
+    getUsers().then(users => {
+        users.forEach(user => {
+            store.usersStore.addUser({
+                id: user.id,
+                username: user.get("username")
+            });
+        });
+    });
+
+    usersLiveQuery().on("create", user => {
+        store.usersStore.addUser({
+            id: user.id,
+            username: user.get("username")
         });
     });
 };
