@@ -4,6 +4,8 @@ import { quizzesLiveQuery, getQuezzes } from "./api/Quizzes";
 import { questionsLiveQuery, getQuestions } from "./api/Questions";
 import { answersLiveQuery, getAnswers } from "./api/Answers";
 import { getUsers, usersLiveQuery } from "./api/Users";
+import { getDepartments } from "./api/Departments";
+
 export const bootStore = store => {
     quizzesFunctions(store);
     questionsFunctions(store);
@@ -85,6 +87,17 @@ const usersFunction = store => {
         store.usersStore.addUser({
             id: user.id,
             username: user.get("username")
+        });
+    });
+};
+
+const departmentsFunction = store => {
+    getDepartments().then(departments => {
+        departments.forEach(department => {
+            store.departmentsStore.addDepartment({
+                id: department.id,
+                name: department.name
+            });
         });
     });
 };
